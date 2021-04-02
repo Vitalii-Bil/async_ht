@@ -21,18 +21,18 @@ async def get_weather(url, session):
 
 
 async def metaweather(url, session):
-    response = await get_weather_details_async(url, session)
+    response = await get_weather(url, session)
     return float(response['consolidated_weather'][0]['the_temp'])
 
 
 async def openweathermap(url, session):
-    response = await get_weather_details_async(url, session)
+    response = await get_weather(url, session)
     return float(response['main']['temp'])
 
 
 async def weatherbit(url, session):
-    response = await get_weather_details_async(url, session)
-    return loat(response['data'][1]['temp'])
+    response = await get_weather(url, session)
+    return float(response['data'][1]['temp'])
 
 
 async def run_program():
@@ -49,3 +49,7 @@ def main():
     loop = asyncio.get_event_loop()
     loop.run_until_complete(run_program())
     loop.close()
+
+
+if __name__ == "__main__":
+    main()
